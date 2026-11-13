@@ -1,0 +1,69 @@
+# Serve the Laravel front controller first (the default Apache page index.html must never win).
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # Handle Authorization Header
+    RewriteCond %{HTTP:Authorization} .
+    RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
+
+    # Send Requests To Front Controller...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Security rules
+# <If> + Require are used instead of RewriteRule so they also apply inside
+# subfolders that have their own .htaccess with RewriteEngine On (e.g. myad/).
+# ---------------------------------------------------------------------------
+
+# Laravel app folder (.env, storage/logs, vendor, source code) is never public.
+<If "%{REQUEST_URI} =~ m#^/jipremium(/|$)#i">
+    Require all denied
+</If>
+
+# phpMyAdmin and phpinfo must not be reachable from the internet.
+# To allow phpMyAdmin from the office only, replace "Require all denied" in the
+# myad block below with:  Require ip 203.0.113.10   (your office public IP)
+<If "%{REQUEST_URI} =~ m#^/myad(/|$)#i">
+    Require all denied
+</If>
+<If "%{REQUEST_URI} =~ m#^/phpinfo\.php#i">
+    Require all denied
+</If>
+
+# Dotfiles (.env, .git, .htaccess, .user.ini, .DS_Store), except .well-known (SSL renewal).
+<If "%{REQUEST_URI} =~ m#(^|/)\.(?!well-known(/|$))#">
+    Require all denied
+</If>
+
+# Only the root index.php may run as PHP. This stops uploaded web shells
+# (public/images/*.php and similar) from ever executing, including /x.php/extra.
+<If "%{REQUEST_URI} =~ m#\.(php[0-9]?|phtml|phar|pht|phps|inc)(/|$)#i && %{REQUEST_URI} !~ m#^/index\.php(/|$)#i">
+    Require all denied
+</If>
+
+# Source / backup files that sometimes get left in the web root.
+<FilesMatch "\.(?i:sql|sql\.gz|bak|backup|old|orig|swp|log|env|ini|sh|scss|lock)$">
+    Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always unset X-Powered-By
+    Header unset X-Powered-By
+</IfModule>

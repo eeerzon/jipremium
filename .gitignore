@@ -1,0 +1,45 @@
+# ---- Secrets: never commit ----
+.env*
+!.env.example
+*.key
+*.pem
+
+# ---- Dependencies (install with composer / npm) ----
+/jipremium/vendor/
+/jipremium/vendor_old/
+/jipremium/vendor1/
+/jipremium/vendor2/
+node_modules/
+
+# ---- Runtime files (logs, cache, sessions, compiled views) ----
+# jipremium/storage and jipremium/bootstrap/cache keep their own .gitignore files.
+/jipremium/storage/logs/*
+!/jipremium/storage/logs/.gitignore
+.phpunit.result.cache
+
+# ---- Uploads made from the admin panel (stay on the server, not in git) ----
+/public/images/*
+!/public/images/.gitkeep
+/public/image/*
+!/public/image/.gitkeep
+
+# ---- Large media (GitHub rejects files over 100 MB) ----
+/videos/*.mp4
+
+# ---- Server tools that must not be versioned ----
+/myad/
+phpinfo.php
+
+# ---- Backups, dumps, archives ----
+/Backup/
+*.bak
+*.sql.gz
+*.tar.gz
+*.zip
+
+# ---- OS / editor ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

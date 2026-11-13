@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'video_event' => 'VIDEO HASIL ACARA',
+    'subscribe_newsletter' => 'BERLANGGANAN DI BERITA KAMI',
+    'desc_newsletter' => 'Daftar & jadi yang pertama mendapatkan berita terbaru dari JIPREMIUM',
+    'desc_newsletter_2' => '* Saya setuju untuk pengumpulan dan penggunaan informasi personal serta bersedia menerima informasi periklanan',
+    'official_partner' => 'PARTNER RESMI JIPREMIUM',
+    'family_exhibition' => 'PAMERAN KELUARGA',
+    'concurrent_show' => 'PERTUNJUKKAN SERENTAK',
+    'name' => 'Nama',
+    'email' => 'Email',
+    'submit' => 'BERLANGGANAN',
+    'con_show_desc' => 'Bergabunglah dengan kami di IMKIDS JIPREMIUM, tempat kecantikan bertemu dengan keibuan dalam perayaan segala hal untuk ibu dan anak. Temukan produk perawatan bayi, produk anak, dan alat edukasi terbaru, sambil menjelajahi kecantikan dan kesehatan terbaik untuk para ibu.',
+
+    'sign_up' => 'Daftar Sekarang',
+    'video_desc'=> 'JIPREMIUM adalah satu-satunya pameran barang konsumen premium di Indonesia dan menawarkan kesempatan untuk bertemu tidak hanya dengan pembeli lokal tetapi juga dengan pembeli di seluruh Asia Tenggara, termasuk Thailand dan Vietnam.',
+    'organizer'=> 'PENYELENGGARA',
+    'local_organizer'=> 'PENYELENGGARA LOKAL',
+    'host'=> 'Dipersembahkan oleh',
+    'ministry_supp'=> 'Pelayanan Pendukung',
+    'partner_supp'=> 'Mitra Pendukung',
+    'subscribe'=> 'BERLANGGANAN',
+    'concurrent_show_title' => 'GLOW&GROW!',
+    'concurrent_show_desc'=> 'Acara spesial untuk para ibu : Dirimu dan Buah Hatimu',
+    'more'=> 'Selengkapnya',
+    'exhibitor_item'=> 'Produk Peserta Pameran',
+    'more_product'=> 'Produk Lainnya',
+    'contact'=> 'KONTAK',
+];

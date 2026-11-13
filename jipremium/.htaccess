@@ -1,0 +1,3 @@
+# The Laravel app folder is never served over HTTP.
+# The root index.php loads it from disk, so blocking all web access here is safe.
+Require all denied
